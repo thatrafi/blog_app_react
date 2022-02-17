@@ -1,19 +1,16 @@
 import React from 'react'
+import { connect} from 'react-redux'
+import { Post } from '.'
 
-import { useGetPostsQuery } from '../services/blogApi'
-import { PostCard } from '.'
 
 
-const Home = () => {
-  const {data : postList, isFetching} = useGetPostsQuery("");
-  if(isFetching) return "Loading...."
+const Home = (props) => {
+
   return (
-    <div className="grid grid-cols-1 gap-12 p-20">
-     {postList.map((post,index)=> (
-       <PostCard post={post} key={index} isPreview={true}/>
-     ) )}
+    <div className="container">
+      <Post />
     </div>
   )
 }
 
-export default Home
+export default connect()(Home)

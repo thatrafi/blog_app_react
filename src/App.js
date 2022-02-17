@@ -1,9 +1,18 @@
-import React from 'react'
-import { Routes, Route, Link} from 'react-router-dom'
+import React,{useEffect} from 'react'
+import { connect } from 'react-redux'
+import { Routes, Route} from 'react-router-dom'
+import { getPostsList,deletePostDetail} from './actions/postAction'
+import { getUsersList } from './actions/userAction'
 
-import { Navbar,Home,Footer,NewPost,Author,PostPreview } from './components'
+import { Navbar,Home,Footer,NewPost,Author,PostDetail } from './components'
 
-const App = () => {
+const App = (props) => {
+    // call the api and store data to state
+    useEffect(()=>{
+      props.dispatch(getPostsList())
+      props.dispatch(getUsersList())
+      props.dispatch(deletePostDetail())
+    })
   return (
     <div className="min-h-screen">
     <div className="gradient-bg-welcome">
@@ -11,8 +20,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/NewPost' element={<NewPost/>} />
-        <Route path='/Author' element={<Author/>} />
-        <Route path='/Post/:postId' element={<PostPreview/>} />
+        <Route path='/Author/:userId' element={<Author/>} />
+        <Route path='/Post/:postId' element={<PostDetail/>} />
       </Routes>
     </div>
     <Footer/>
@@ -20,4 +29,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect()(App)
