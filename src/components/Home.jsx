@@ -1,19 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect} from 'react-redux'
 
-import { useGetPostsQuery } from '../services/blogApi'
-import { PostCard } from '.'
+import { deletePostDetail,addResponsePostData } from '../actions/postAction'
 
 
-const Home = () => {
-  const {data : postList, isFetching} = useGetPostsQuery("");
-  if(isFetching) return "Loading...."
+import { Post } from '.'
+
+const mapStateToProps = (state) =>{
+  return {
+    getResponsePostData : state.posts.getResponsePostData,
+    errorResponsePostData : state.posts.errorResponsePostData,
+    getPostsList : state.posts.getPostsList,
+    errorPostsList : state.posts.errorPostsList
+  }
+}
+
+const Home = (props) => {
+
+  useEffect(() =>{
+    props.dispatch(deletePostDetail())
+    if(props.getResponsePostData){
+      // get proplist
+      if(props.getPostsList){
+        if(!props.getPostsList.find(p => p.id === props.getResponsePostData.id)){
+          props.dispatch(addResponsePostData(props.getResponsePostData))
+        }
+      }
+      
+    }
+  })
+
   return (
-    <div className="grid grid-cols-1 gap-12 p-20">
-     {postList.map((post,index)=> (
-       <PostCard post={post} key={index} isPreview={true}/>
-     ) )}
+    <div className="container">
+      <Post />
     </div>
   )
 }
 
-export default Home
+export default connect(mapStateToProps,null)(Home)
