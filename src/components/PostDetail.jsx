@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
     errorPostData : state.posts.errorPostData,
     getPostsList : state.posts.getPostsList,
     errorPostsList : state.posts.errorPostsList,
-    getUserData : state.users.getUserData
+    getUserData : state.users.getUserData,
+    getUsersList : state.users.getUsersList
   }
 }
 
@@ -20,15 +21,19 @@ const PostDetail = (props) => {
   const {postId} = useParams();
 
   var postData = false
-  var userName = ""
+  const [userName, setUserName] = useState("")
 
   if(props.getPostsList.length > 0){
     postData = props.getPostsList.find(p=> p.id === parseInt(postId))
-    if(postData !== undefined){
-      props.dispatch(getUserById(postData.userId))
-      userName = props.getUserData.name
-    }
   }
+
+  useEffect(()=>{
+    if(postData){
+      if(props.getUsersList.length >0){
+        setUserName(props.getUsersList.find(u=> u.id == postData.userId).name)
+      }
+    }
+  })
 
   return (
     
