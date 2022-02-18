@@ -13,7 +13,7 @@ const truncate = (str,limit) => {
 }
 const today = moment().toString()
 
-var userName = ""
+var userName = props.post.userId
 
 if(props.post.userData){
     userName = props.post.userData.name

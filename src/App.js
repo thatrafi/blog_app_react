@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Routes, Route, useNavigate} from 'react-router-dom'
 import { getPostsList,deletePostDetail,addPostData} from './actions/postAction'
 import { getUsersList } from './actions/userAction'
+import { getCommentsList } from './actions/commentAction'
 import swal from 'sweetalert'
 
 import { Navbar,Home,Footer,NewPost,Author,PostDetail } from './components'
@@ -14,6 +15,7 @@ const App = (props) => {
    const navigate = useNavigate()
     // call the api and store data to state
     useEffect(()=>{
+      props.dispatch(getCommentsList())
       props.dispatch(getUsersList())
       props.dispatch(deletePostDetail())
       props.dispatch(getPostsList())
