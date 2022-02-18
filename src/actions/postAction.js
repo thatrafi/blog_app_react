@@ -12,14 +12,28 @@ export const getPostsList = () => {
   return (dispatch) => {
     axios.get(`${BASE_URL}/posts`)
     .then(function (response) {
-      // handle success
-      dispatch({
-          type : GET_POSTS_LIST,
-          payload : {
-              data : response.data,
-              errorMessage : false
-          }
-      })
+        // handle success
+          var posts = response.data
+          var newPosts = []
+          axios.get(`${BASE_URL}/users`)
+          .then(function (responseUser) {
+            const users = responseUser.data
+            // handle success
+            newPosts = posts.map((item,index) => {
+              return Object.assign({}, item, { userData : users.find(u=>u.id===item.userId) });
+            });
+            dispatch({
+                type : GET_POSTS_LIST,
+                payload : {
+                    data : newPosts,
+                    errorMessage : false
+                }
+            })
+          })
+          .catch(function (error) {
+          // handle error
+          console.log(error);
+          })
     })
     .catch(function (error) {
       // handle error

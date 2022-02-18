@@ -12,6 +12,14 @@ const truncate = (str,limit) => {
     return str.length > limit ? str.substring(0, limit) + "..." : str;
 }
 const today = moment().toString()
+
+var userName = ""
+
+if(props.post.userData){
+    userName = props.post.userData.name
+}
+
+
   return (
     <div className="shadow-lg rounded-lg p-0 pb-20 mb-8 blue-glassmorphism outline-none">
         <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -33,7 +41,7 @@ const today = moment().toString()
             <Link to={`/Author/${props.post.userId}`}>
             <div className='flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8'>
                 <img src={userIcon} height="30px" width="30px" className="align-middle rounded-full" alt="" />
-                    <p className='inline align-middle text-white ml-2 text-lg hover:text-pink'>{props.userName}</p>
+                    <p className='inline align-middle text-white ml-2 text-lg hover:text-pink'>{userName}</p>
             </div>
             </Link>
             
