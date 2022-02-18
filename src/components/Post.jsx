@@ -40,9 +40,11 @@ const Post = (props) => {
 
   if(props.getPostsList){
     newArray = props.getPostsList.map((item,index) => {
-      return Object.assign({}, item, { postCard: <PostCard post={item} key={index} isPreview={true} /> });
+      return Object.assign({}, item, { postCard: <PostCard post={item} key={index} userName={item.userId} isPreview={true} /> });
     });
   }
+
+  
 
   return (
 

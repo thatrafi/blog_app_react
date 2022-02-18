@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect} from 'react'
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getUserById } from '../actions/userAction';
@@ -44,34 +44,34 @@ const Author = (props) => {
         <div className="items-center">
           <h1 className="text-white font-semibold text-lg">{props.getUserData.email}</h1>
         </div>
-        <div class="grid lg:grid-cols-2 gap-4 p-8 w-full">
+        <div className="grid lg:grid-cols-2 gap-4 p-8 w-full">
           <div>
-          <div class="blue-glassmorphism shadow overflow-hidden sm:rounded-lg">
-            <div class="px-4 py-4 sm:px-6">
-              <h3 class="text-lg leading-6 font-medium text-white">More Information</h3>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and information.</p>
+          <div className="blue-glassmorphism shadow overflow-hidden sm:rounded-lg">
+            <div className="px-4 py-4 sm:px-6">
+              <h3 className="text-lg leading-6 font-medium text-white">More Information</h3>
+              <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and information.</p>
             </div>
-            <div class="border-t  blue-glassmorphism">
+            <div className="border-t  blue-glassmorphism">
               <dl>
-                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-white">Username</dt>
-                  <dd class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.username}</dd>
+                <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-white">Username</dt>
+                  <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.username}</dd>
                 </div>
-                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-white">Phone</dt>
-                  <dd class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.phone}</dd>
+                <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-white">Phone</dt>
+                  <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.phone}</dd>
                 </div>
-                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-white">Website</dt>
-                  <dd class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.website}</dd>
+                <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-white">Website</dt>
+                  <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{props.getUserData.website}</dd>
                 </div>
-                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-white">Company</dt>
-                  <dd class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{company.name}</dd>
+                <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-white">Company</dt>
+                  <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{company.name}</dd>
                 </div>
-                <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-white">Address</dt>
-                  <dd class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{address.street}<br/>{address.suite}<br/>{address.city}<br/>{address.zipcode}</dd>
+                <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-white">Address</dt>
+                  <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">{address.street}<br/>{address.suite}<br/>{address.city}<br/>{address.zipcode}</dd>
                 </div>
               </dl>
             </div>

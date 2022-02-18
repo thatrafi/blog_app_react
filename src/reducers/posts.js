@@ -1,10 +1,12 @@
-import { GET_POSTS_LIST,GET_POST_DETAIL } from "../actions/postAction"
+import { GET_POSTS_LIST,GET_POST_DETAIL,ADD_POST_DATA,ADD_RESPONSE_POST_DATA } from "../actions/postAction"
 
 let initialState = {
     getPostsList : [],
     errorPostsList : false,
     getPostData : false,
-    errorPostData : false
+    errorPostData : false,
+    getResponsePostData : false,
+    errorResponsePostData : false
 }
 
 const posts = (state = initialState, action) => {
@@ -20,6 +22,17 @@ const posts = (state = initialState, action) => {
         ...state,
         getPostData : action.payload.data,
         errorPostData : action.payload.errorMessage
+    }
+    case ADD_POST_DATA :
+      return{
+        ...state,
+        getResponsePostData : action.payload.data,
+        errorResponsePostData : action.payload.errorMessage
+      }
+    case ADD_RESPONSE_POST_DATA :
+    return{
+      ...state,
+      getPostsList : [action.payload.data, ...state.getPostsList]
     }
     default:
       return state;

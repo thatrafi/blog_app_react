@@ -2,11 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-
 import defaultImage from '../images/codeimage.jpeg'
 import userIcon from '../images/user-icon.png'
 import dateIcon from '../images/date-icon.png'
-
 
 const PostCard = (props) => {
 
@@ -32,12 +30,13 @@ const today = moment().toString()
         )}
 
         <div className='block lg:flex text-center items-center justify-center mb-8 w-full'>
+            <Link to={`/Author/${props.post.userId}`}>
             <div className='flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8'>
                 <img src={userIcon} height="30px" width="30px" className="align-middle rounded-full" alt="" />
-                <Link to={`/Author/${props.post.userId}`}>
-                    <p className='inline align-middle text-white ml-2 text-lg'>{props.post.userId}</p>
-                </Link>
+                    <p className='inline align-middle text-white ml-2 text-lg hover:text-pink'>{props.userName}</p>
             </div>
+            </Link>
+            
             <div className='font-medium text-white'>
                 <img src={dateIcon} height="40px" width="30px" className="h-6 w-6 inline mr-2" alt="" />
                 <span>{today}</span>

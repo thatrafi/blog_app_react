@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const GET_POSTS_LIST = "GET_POSTS_LIST";
 export const GET_POST_DETAIL = "GET_POST_DETAIL";
+export const ADD_POST_DATA = "ADD_POST_DATA"
+export const ADD_RESPONSE_POST_DATA = "ADD_RESPONSE_POST_DATA"
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -59,6 +61,42 @@ export const getPostById = (postId) => {
       })
     }
   };
+
+  export const addPostData = (data) =>{
+    return (dispatch) => {
+      axios.post(`${BASE_URL}/posts`, data)
+      .then(function (response) {
+        dispatch({
+          type : ADD_POST_DATA,
+          payload : {
+              data : response.data,
+              errorMessage : false
+          }
+       })
+      })
+      .catch(function (error) {
+        dispatch({
+          type : ADD_POST_DATA,
+          payload : {
+              data : [],
+              errorMessage : error.message
+          }
+        })
+      });
+    }
+  }
+
+  export const addResponsePostData = (data) =>{
+    return ( dispatch) => {
+      dispatch({
+        type : ADD_RESPONSE_POST_DATA,
+        payload : {
+            data : data,
+            errorMessage : false
+        }
+     })
+    }
+  }
 
   export const deletePostDetail = () =>{
     return ( dispatch) => {

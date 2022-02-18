@@ -1,30 +1,43 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getPostById} from '../actions/postAction'
+import { getUserById } from '../actions/userAction'
 
 import { PostCard } from '.'
 
 const mapStateToProps = (state) => {
   return {
     getPostData : state.posts.getPostData,
-    errorPostData : state.posts.errorPostData
+    errorPostData : state.posts.errorPostData,
+    getPostsList : state.posts.getPostsList,
+    errorPostsList : state.posts.errorPostsList,
+    getUserData : state.users.getUserData
   }
 }
 
-const PostPreview = (props) => {
+const PostDetail = (props) => {
   const {postId} = useParams();
 
-  useEffect(() => {
-    props.dispatch(getPostById(postId))
-  },[])
+  var postData = false
+  var userName = ""
+
+  if(props.getPostsList.length > 0){
+    postData = props.getPostsList.find(p=> p.id === parseInt(postId))
+    if(postData !== undefined){
+      props.dispatch(getUserById(postData.userId))
+      userName = props.getUserData.name
+    }
+  }
 
   return (
+    
     <div className="container h-screen">
-       <PostCard post={props.getPostData} isPreview={false} />
+      {(postData === undefined)?(
+       <div className="text-white">No Data</div>
+      ): ( <PostCard post={postData} isPreview={false} userName={userName} />)}
     </div>
   )
 }
 
-export default connect(mapStateToProps,null)(PostPreview)  
+export default connect(mapStateToProps,null)(PostDetail)  
